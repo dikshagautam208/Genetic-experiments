@@ -1,14 +1,14 @@
 ## Genetic Experiments
 Objective is to find the solution to the NP-hard Travelling Salesperson Problem as close to the actual solution as possible.
 
-Employed Genetic Algorithm to breed generations of individuals and following the "survival of the fittest" policy to arrive at a very good approximate answer to the original problem.
+Employed Genetic Algorithm to breed generations of individuals and following the "Survival of the Fittest" policy to arrive at a very good approximate answer to the original problem.
 
 ### How to run?
-**requirements.txt** => contains the necessary python libraries to run the project
-**main.py** => main file with the evolution loop and plots
-**env.py** => to generate city map and evolve generations
-**person.py** => individual class with cross-breeding functionality
-**constants.py** => contains run parameters which can be tinkered with
+1. **requirements.txt** - contains the necessary python libraries to run the project
+2. **main.py** - main file with the evolution loop and plots
+3. **env.py** - to generate city map and evolve generations
+4. **person.py** - individual class with cross-breeding functionality
+5. **constants.py** - contains run parameters which can be tinkered with
 
 ```
 $> pip install -r requirements.txt
