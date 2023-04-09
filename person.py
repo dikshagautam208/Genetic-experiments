@@ -2,20 +2,18 @@ import random
 
 
 class Person:
-
-
 	def __init__(self, dnaLength, mutationRate, dna, random=False):
 		self.dnaLength = dnaLength
 		self.mutationRate = mutationRate
 		self.dna = dna if (not random) else self.randomDna()
 
-
+	# create a random sequence of cities' indices
 	def randomDna(self):
 		dna = list(range(self.dnaLength))
 		random.shuffle(dna)
 		return dna
 
-
+	# cross-breeding this person with the mate
 	def crossover(self, mate):
 		firstDna = random.sample([self, mate], 1)[0].dna
 		secondDna = self.dna if ( firstDna == mate.dna) else mate.dna

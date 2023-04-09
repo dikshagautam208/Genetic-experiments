@@ -4,8 +4,6 @@ from person import *
 
 
 class Env:
-
-
 	def __init__(self, populationSize, survivalRate, matingRate, dnaLength, mutationRate, dataPoints, radius):
 		self.populationSize = populationSize
 		self.survivalRate = survivalRate
@@ -18,39 +16,37 @@ class Env:
 		self.radius = radius
 		self.createMap()
 
-
 	def initRandomPopulation(self):
 		self.population = [Person(self.dnaLength, self.mutationRate, [], random=True) for _ in range(self.populationSize)]
 
-
+	# creates a cities map on the cartesian plane (circle/random)
 	def createMap(self):
-		# # coordinates for circular graph
-		# coords = [[self.radius*cos(2*pi*i/self.dataPoints) , self.radius*sin(2*pi*i/self.dataPoints)] for i in range(self.dataPoints)]
-		
-		# coordinates for random graph
-		coords = [[random.uniform(-1, 1) , random.uniform(-1, 1)] for _ in range(self.dataPoints)]
+		# coordinates for circular graph
+		coords = [[self.radius*cos(2*pi*i/self.dataPoints) , self.radius*sin(2*pi*i/self.dataPoints)] for i in range(self.dataPoints)]
+		# # coordinates for random graph
+		# coords = [[random.uniform(-1, 1) , random.uniform(-1, 1)] for _ in range(self.dataPoints)]
 		self.xs, self.ys = map(list, zip(*coords))
 
-
+	# calculates the fitness of an individual person
 	def calcFitness(self, dna):
 		fitness = 0
 		for i in range(-1, len(dna) - 1):
 			fitness += sqrt( (self.xs[dna[i]] - self.xs[dna[i+1]])**2 + (self.ys[dna[i]] - self.ys[dna[i+1]])**2 )
 		return fitness
 
-
+	# key comparator function
 	def compareFitness(self, person):
 		return self.calcFitness(person.dna)
 
-
+	# sort population based on the fitness function
 	def sortPopulation(self):
 		self.population.sort(key = self.compareFitness)
 
-
+	# returns best fit person from the population
 	def bestFitness(self):
 		return self.calcFitness(self.population[0].dna)
 
-
+	# breed an offspring generation from current one
 	def newPopulation(self):
 		# top 10% of the fittest survive
 		fitParents = self.population[:int(self.populationSize * self.survivalRate)]

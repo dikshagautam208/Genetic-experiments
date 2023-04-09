@@ -1,0 +1,22 @@
+ENV SETTING=============================
+
+1.	City map with be restricted to 2x2 square unit grid around origin. 
+2.	Movements are possible in any direction on the cartesian plane
+3.	Objective is to find the shortest possible path starting from any city and covering every city and returning to the starting city
+5.	Map & simulation parameters can be changed from the constants.py file only
+
+DNA DESIGN==============================
+
+1.	DNA is designed as a sequence of city indices which the person will cover in order to solve the travelling saleperson problem.
+2.	DNA will start from any city as the cities need to be visited in a circular route
+3.	Cross-breeding of individuals is done by copy pasting first half of the DNA from one parent and preserving the order of the remaining city indices through the DNA of another parent.
+4.	Mutations are introduced in the process by randomly swapping indices in the offspring DNA
+5.	Fitness is defined as the distance the person takes to follow the route described by its DNA. Shorter the distance, more fit the individual is.
+
+POPULATION SETTINGS=====================
+
+1.	Offspring generation is created by taking top 10-20% of the fit individuals from current generation and mating the top 50-60% of the fit individuals to breed the 80-90% offsprings.
+
+REFERENCES==============================
+
+1.	Medium article => https://medium.com/@kennyrich/understanding-the-genetic-algorithm-4eac04a07a59#:~:text=The%20genetic%20Algorithm%20shows%20the,optimization%20problems%20and%20search%20problems.
